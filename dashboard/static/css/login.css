@@ -1,0 +1,634 @@
+/* ===================================================================
+   RoadGuard AI - Login & Landing Page Styling
+   Accurately replicates the provided UI design & theme
+   =================================================================== */
+
+:root {
+    --primary-blue: #0284c7;
+    --primary-blue-hover: #0369a1;
+    --primary-gradient: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    --accent-cyan: #38bdf8;
+    --dark-bg: #0b1329;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-light: #f8fafc;
+    --border-color: #e2e8f0;
+    --border-focus: #0284c7;
+    --card-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.12), 0 8px 16px -6px rgba(15, 23, 42, 0.08);
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    background-color: #f1f5f9;
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---------------- Top Header Bar ---------------- */
+.top-header {
+    width: 100%;
+    height: 70px;
+    background: #ffffff;
+    border-bottom: 1px solid #edf2f7;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 50;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.header-container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo-pin {
+    width: 36px;
+    height: 36px;
+    color: #0284c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-pin svg {
+    width: 100%;
+    height: 100%;
+}
+
+.large-pin {
+    width: 44px;
+    height: 44px;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.brand-tagline {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #64748b;
+    letter-spacing: 0.03em;
+}
+
+.header-right .sub-heading-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #64748b;
+}
+
+/* ---------------- Main Content Layout ---------------- */
+.main-content {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    min-height: calc(100vh - 70px);
+    width: 100%;
+    background-color: #f8fafc;
+}
+
+/* ---------------- Left Hero Section ---------------- */
+.hero-section {
+    position: relative;
+    background: #091326 url('/static/images/road_hero.jpg') center center / cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 4rem 3rem 4.5rem;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+/* Subtle dark gradient overlay on road photo to ensure high contrast */
+.hero-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(8, 20, 44, 0.94) 0%, rgba(10, 25, 55, 0.72) 45%, rgba(6, 17, 36, 0.88) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Pill badge: Smarter Roads. Safer Journeys. */
+.pill-badge {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    padding: 0.4rem 1.1rem;
+    background: rgba(14, 165, 233, 0.16);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    border-radius: 9999px;
+    margin-bottom: 1.75rem;
+    backdrop-filter: blur(8px);
+}
+
+.pill-badge span {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #38bdf8;
+    letter-spacing: 0.02em;
+}
+
+/* Main Welcome Heading */
+.hero-title {
+    font-size: 3.4rem;
+    font-weight: 800;
+    line-height: 1.15;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.35rem;
+}
+
+.title-highlight {
+    color: #38bdf8;
+    background: linear-gradient(90deg, #38bdf8, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: #cbd5e1;
+    font-weight: 400;
+    margin-bottom: 2.75rem;
+    max-width: 540px;
+}
+
+/* 4 Feature Circles */
+.feature-grid {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.75rem;
+    margin-bottom: 3rem;
+}
+
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.65rem;
+}
+
+.feature-icon-circle {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.65);
+    border: 1.5px solid rgba(56, 189, 248, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+    transition: all 0.25s ease;
+}
+
+.feature-icon-circle:hover {
+    transform: translateY(-3px) scale(1.05);
+    border-color: #38bdf8;
+    box-shadow: 0 0 22px rgba(56, 189, 248, 0.45);
+}
+
+.feature-svg {
+    width: 32px;
+    height: 32px;
+}
+
+.feature-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #e2e8f0;
+    line-height: 1.3;
+}
+
+/* AR holographic scanner box on road */
+.ar-scanner-bracket {
+    position: relative;
+    width: 220px;
+    height: 85px;
+    border: 1.5px solid rgba(56, 189, 248, 0.7);
+    background: rgba(14, 165, 233, 0.08);
+    border-radius: 4px;
+    margin: 1rem 0 2rem 5rem;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.ar-inner-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(to right, rgba(56, 189, 248, 0.15) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 189, 248, 0.15) 1px, transparent 1px);
+    background-size: 14px 14px;
+}
+
+.ar-dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #38bdf8;
+    border-radius: 1px;
+}
+
+.ar-dot.top-left { top: -3px; left: -3px; }
+.ar-dot.top-right { top: -3px; right: -3px; }
+.ar-dot.bottom-left { bottom: -3px; left: -3px; }
+.ar-dot.bottom-right { bottom: -3px; right: -3px; }
+
+.ar-scanline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+    box-shadow: 0 0 10px #38bdf8;
+    animation: arScan 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes arScan {
+    0% { top: 10%; opacity: 0.4; }
+    100% { top: 85%; opacity: 1; }
+}
+
+/* Footer in Left Hero */
+.hero-footer-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: auto;
+}
+
+.accent-line {
+    width: 48px;
+    height: 2px;
+    background: #0284c7;
+    border-radius: 2px;
+}
+
+.footer-tag {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #94a3b8;
+    letter-spacing: 0.02em;
+}
+
+/* ---------------- Right Login Panel ---------------- */
+.login-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    background-color: #f8fafc;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 470px;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 3rem 2.75rem;
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Card Brand Header */
+.card-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+}
+
+.card-brand-title {
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+}
+
+/* Title & Description */
+.card-title-group {
+    margin-bottom: 2rem;
+}
+
+.login-heading {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.45rem;
+}
+
+.login-subtext {
+    font-size: 0.88rem;
+    color: #64748b;
+    line-height: 1.45;
+}
+
+/* Form Styling */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.form-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    color: #94a3b8;
+    font-size: 0.95rem;
+    pointer-events: none;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem 2.6rem 0.75rem 2.6rem;
+    font-size: 0.92rem;
+    font-family: inherit;
+    color: #0f172a;
+    background-color: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.form-input::placeholder {
+    color: #94a3b8;
+    font-weight: 400;
+}
+
+.form-input:focus {
+    border-color: #0284c7;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.12);
+}
+
+.btn-toggle-pwd {
+    position: absolute;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.btn-toggle-pwd:hover {
+    color: #475569;
+}
+
+/* Remember me & Forgot Password */
+.form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.2rem;
+}
+
+.remember-label {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.85rem;
+    color: #475569;
+    cursor: pointer;
+    user-select: none;
+}
+
+.custom-checkbox {
+    width: 16px;
+    height: 16px;
+    accent-color: #0284c7;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.forgot-link {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #0284c7;
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.forgot-link:hover {
+    color: #0369a1;
+    text-decoration: underline;
+}
+
+/* Primary Login Button */
+.btn-primary-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.82rem;
+    background: #0284c7;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.98rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.28);
+    transition: all 0.2s ease;
+    margin-top: 0.5rem;
+}
+
+.btn-primary-login:hover {
+    background: #0369a1;
+    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35);
+    transform: translateY(-1px);
+}
+
+.btn-primary-login:active {
+    transform: translateY(0);
+}
+
+/* Divider OR */
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0 1.25rem 0;
+    gap: 1rem;
+}
+
+.divider-line {
+    flex: 1;
+    height: 1px;
+    background-color: #e2e8f0;
+}
+
+.divider-text {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #94a3b8;
+    letter-spacing: 0.05em;
+}
+
+/* Continue with Google button */
+.btn-google-auth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.75rem;
+    background: #ffffff;
+    color: #334155;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-google-auth:hover {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.google-icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* Card Footer */
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.contact-link {
+    color: #0284c7;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.contact-link:hover {
+    text-decoration: underline;
+}
+
+/* Alert Box */
+.login-alert {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+}
+
+.login-alert.error {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+.login-alert.info {
+    background: #f0f9ff;
+    color: #0369a1;
+    border: 1px solid #bae6fd;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1080px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-section {
+        padding: 3rem 2rem;
+    }
+    
+    .hero-title {
+        font-size: 2.6rem;
+    }
+
+    .feature-grid {
+        flex-wrap: wrap;
+        gap: 1.2rem;
+    }
+
+    .login-panel {
+        padding: 2.5rem 1.5rem;
+    }
+}

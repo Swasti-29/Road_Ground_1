@@ -83,6 +83,18 @@ except Exception as e:
 
 
 @app.route("/")
+@app.route("/login")
+def login_page():
+    """Serves the front landing and login page."""
+    login_html_path = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "..", "dashboard", "login.html")
+    )
+    if os.path.exists(login_html_path):
+        with open(login_html_path, "r", encoding="utf-8") as f:
+            return f.read()
+    return "Login HTML not found. Please verify dashboard/login.html", 404
+
+
 @app.route("/dashboard")
 @app.route("/map")
 @app.route("/alerts")

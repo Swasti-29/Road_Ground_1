@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoadGuard AI - Login | AI-Powered Road Safety Monitoring System</title>
+    <meta name="description" content="Access RoadGuard AI dashboard and monitor road conditions, potholes, speed breakers and road safety in real-time.">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body>
+    <!-- Top Header Bar -->
+    <header class="top-header">
+        <div class="header-container">
+            <a href="/" class="brand-badge">
+                <div class="logo-pin">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        <path d="M10 11.5 L14 11.5 L12 5.5 Z" fill="#ffffff" opacity="0.95"/>
+                        <circle cx="12" cy="7.2" r="1.1" fill="#0284c7" />
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">RoadGuard AI</span>
+                    <span class="brand-tagline">Safer Roads &nbsp;|&nbsp; Smarter Cities</span>
+                </div>
+            </a>
+            <div class="header-right">
+                <span class="sub-heading-text">AI-Powered Road Safety Monitoring System</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Hero & Login Split Section -->
+    <main class="main-content">
+        <!-- Left Hero Presentation Area -->
+        <section class="hero-section">
+            <div class="hero-bg-overlay"></div>
+            
+            <div class="hero-content">
+                <div class="pill-badge">
+                    <span>Smarter Roads. Safer Journeys.</span>
+                </div>
+
+                <h1 class="hero-title">
+                    Welcome to<br>
+                    <span class="title-highlight">RoadGuard AI</span>
+                </h1>
+
+                <p class="hero-description">
+                    AI-powered road monitoring system that detects potholes,
+                    speed breakers and rough roads in real-time, helping build
+                    safer and smoother journeys for everyone.
+                </p>
+
+                <!-- 4 Feature Circles -->
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon-circle">
+                            <svg class="feature-svg" viewBox="0 0 36 36" fill="none" stroke="currentColor">
+                                <circle cx="18" cy="18" r="16" stroke-width="1.5" stroke="#38bdf8" stroke-dasharray="3 2" />
+                                <path d="M11 27 L15 10" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M25 27 L21 10" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="18" y1="12" x2="18" y2="15" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="18" y1="19" x2="18" y2="23" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <span class="feature-label">Pothole<br>Detection</span>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon-circle">
+                            <svg class="feature-svg" viewBox="0 0 36 36" fill="none" stroke="currentColor">
+                                <circle cx="18" cy="18" r="16" stroke-width="1.5" stroke="#38bdf8" stroke-dasharray="3 2" />
+                                <path d="M9 22 C13 13, 23 13, 27 22" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+                                <path d="M8 23.5 L28 23.5" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <span class="feature-label">Speed Breaker<br>Detection</span>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon-circle">
+                            <svg class="feature-svg" viewBox="0 0 36 36" fill="none" stroke="currentColor">
+                                <circle cx="18" cy="18" r="16" stroke-width="1.5" stroke="#38bdf8" stroke-dasharray="3 2" />
+                                <path d="M9 16 Q13.5 12, 18 16 T27 16" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" fill="none"/>
+                                <path d="M9 21 Q13.5 17, 18 21 T27 21" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" fill="none"/>
+                            </svg>
+                        </div>
+                        <span class="feature-label">Rough Road<br>Detection</span>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon-circle">
+                            <svg class="feature-svg" viewBox="0 0 36 36" fill="none" stroke="currentColor">
+                                <circle cx="18" cy="18" r="16" stroke-width="1.5" stroke="#38bdf8" stroke-dasharray="3 2" />
+                                <path d="M18 9 L25 12 V18 C25 23 18 27 18 27 C18 27 11 23 11 18 V12 Z" stroke="#38bdf8" stroke-width="1.8" stroke-linejoin="round" fill="none"/>
+                                <polyline points="15 18 17.5 20.5 22 15" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            </svg>
+                        </div>
+                        <span class="feature-label">Real-time<br>Alerts</span>
+                    </div>
+                </div>
+
+                <!-- Holographic AR Box Overlay on Road (Matches Photo) -->
+                <div class="ar-scanner-bracket">
+                    <div class="ar-inner-grid"></div>
+                    <span class="ar-dot top-left"></span>
+                    <span class="ar-dot top-right"></span>
+                    <span class="ar-dot bottom-left"></span>
+                    <span class="ar-dot bottom-right"></span>
+                    <div class="ar-scanline"></div>
+                </div>
+
+                <!-- Footer highlight in left pane -->
+                <div class="hero-footer-bar">
+                    <div class="accent-line"></div>
+                    <span class="footer-tag">Powered by AI &nbsp;|&nbsp; Built for Safer Tomorrow</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Login Card Section -->
+        <section class="login-panel">
+            <div class="login-card">
+                <!-- Card Header Logo -->
+                <div class="card-brand">
+                    <div class="logo-pin large-pin">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            <path d="M10 11.5 L14 11.5 L12 5.5 Z" fill="#ffffff" opacity="0.95"/>
+                            <circle cx="12" cy="7.2" r="1.1" fill="#0284c7" />
+                        </svg>
+                    </div>
+                    <h2 class="card-brand-title">RoadGuard AI</h2>
+                </div>
+
+                <!-- Sub-titles -->
+                <div class="card-title-group">
+                    <h3 class="login-heading">Login to Your Account</h3>
+                    <p class="login-subtext">Access your dashboard and monitor road conditions in real-time.</p>
+                </div>
+
+                <!-- Alert banner for errors/demo hint -->
+                <div id="loginAlert" class="login-alert" style="display: none;"></div>
+
+                <!-- Form -->
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label for="usernameInput" class="form-label">Gmail Address</label>
+                        <div class="input-container">
+                            <span class="input-icon"><i class="fa-regular fa-envelope"></i></span>
+                            <input 
+                                type="email" 
+                                id="usernameInput" 
+                                class="form-input" 
+                                placeholder="name@gmail.com" 
+                                value="admin@gmail.com"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passwordInput" class="form-label">Password</label>
+                        <div class="input-container">
+                            <span class="input-icon"><i class="fa-solid fa-lock"></i></span>
+                            <input 
+                                type="password" 
+                                id="passwordInput" 
+                                class="form-input" 
+                                placeholder="Enter your password" 
+                                value="password123"
+                                required
+                            />
+                            <button type="button" class="btn-toggle-pwd" id="togglePasswordBtn" aria-label="Toggle password visibility">
+                                <i class="fa-regular fa-eye-slash" id="eyeIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-label">
+                            <input type="checkbox" id="rememberMeCheck" checked class="custom-checkbox">
+                            <span class="checkbox-box"></span>
+                            <span class="label-text">Remember me</span>
+                        </label>
+                        <a href="javascript:void(0)" class="forgot-link" id="forgotPasswordBtn">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn-primary-login" id="btnLoginSubmit">
+                        <span class="btn-text">Login</span>
+                        <i class="fa-solid fa-arrow-right btn-arrow"></i>
+                    </button>
+                </form>
+
+                <div class="divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-text">OR</span>
+                    <span class="divider-line"></span>
+                </div>
+
+                <!-- Google OAuth Button -->
+                <button type="button" class="btn-google-auth" id="btnGoogleLogin">
+                    <svg class="google-icon" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+                        <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+                        <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.98 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+                        <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+                    </svg>
+                    <span>Continue with Google</span>
+                </button>
+
+                <!-- Footer Help -->
+                <div class="card-footer">
+                    <span>Don't have an account?</span>
+                    <a href="mailto:admin@roadguard.ai?subject=RoadGuard%20Account%20Request" class="contact-link">Contact Admin</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- JavaScript logic -->
+    <script>
+        // Password visibility toggle
+        const toggleBtn = document.getElementById('togglePasswordBtn');
+        const pwdInput = document.getElementById('passwordInput');
+        const eyeIcon = document.getElementById('eyeIcon');
+        
+        toggleBtn.addEventListener('click', () => {
+            const isPassword = pwdInput.type === 'password';
+            pwdInput.type = isPassword ? 'text' : 'password';
+            eyeIcon.className = isPassword ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash';
+        });
+
+        // Form Submit Handler
+        const loginForm = document.getElementById('loginForm');
+        const alertBox = document.getElementById('loginAlert');
+        const submitBtn = document.getElementById('btnLoginSubmit');
+
+        // List of authorized Gmail accounts
+        // You can add or change your exact email address in this list
+        const AUTHORIZED_GMAILS = [
+            'admin@gmail.com',
+            'roadguard.admin@gmail.com',
+            'pmc.roads@gmail.com'
+        ];
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('usernameInput').value.trim().toLowerCase();
+            const password = pwdInput.value.trim();
+
+            if (!email || !password) {
+                showAlert('Please fill in both Gmail address and password.', 'error');
+                return;
+            }
+
+            // 1. Strict Gmail Domain Check
+            const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+            if (!gmailRegex.test(email)) {
+                showAlert('Access Denied: Only valid @gmail.com addresses are permitted.', 'error');
+                return;
+            }
+
+            // 2. Authorized Account Check
+            // Allows authorized emails or password verification
+            const isAuthorized = AUTHORIZED_GMAILS.includes(email);
+            if (!isAuthorized) {
+                showAlert(`Access Denied: ${email} is not in the authorized access list. Contact administrator.`, 'error');
+                return;
+            }
+
+            if (password.length < 6) {
+                showAlert('Password must be at least 6 characters.', 'error');
+                return;
+            }
+
+            // Button feedback
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Authenticating...';
+
+            setTimeout(() => {
+                // Save user session in localStorage
+                localStorage.setItem('roadguard_user', JSON.stringify({
+                    username: email,
+                    role: 'Municipal Roads Engineer',
+                    loggedInAt: new Date().toISOString()
+                }));
+
+                // Redirect to dashboard
+                window.location.href = '/dashboard';
+            }, 750);
+        });
+
+        // Google Login Handler
+        document.getElementById('btnGoogleLogin').addEventListener('click', () => {
+            const chosenGmail = prompt('Enter your authorized Google Gmail address to sign in:', 'admin@gmail.com');
+            if (!chosenGmail) return;
+
+            const trimmedEmail = chosenGmail.trim().toLowerCase();
+            if (!trimmedEmail.endsWith('@gmail.com')) {
+                showAlert('Google Sign-In failed: Must be an @gmail.com address.', 'error');
+                return;
+            }
+
+            if (!AUTHORIZED_GMAILS.includes(trimmedEmail)) {
+                showAlert(`Access Denied: ${trimmedEmail} is not authorized to access RoadGuard AI.`, 'error');
+                return;
+            }
+
+            const btn = document.getElementById('btnGoogleLogin');
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Verifying with Google...';
+            setTimeout(() => {
+                localStorage.setItem('roadguard_user', JSON.stringify({
+                    username: trimmedEmail,
+                    role: 'Authenticated Officer',
+                    loggedInAt: new Date().toISOString()
+                }));
+                window.location.href = '/dashboard';
+            }, 700);
+        });
+
+        // Forgot Password
+        document.getElementById('forgotPasswordBtn').addEventListener('click', () => {
+            showAlert('Password reset instructions have been dispatched to your system administrator.', 'info');
+        });
+
+        function showAlert(msg, type) {
+            alertBox.textContent = msg;
+            alertBox.className = 'login-alert ' + type;
+            alertBox.style.display = 'block';
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 4500);
+        }
+    </script>
+</body>
+</html>
