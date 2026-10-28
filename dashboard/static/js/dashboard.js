@@ -24,6 +24,7 @@ let activeHotspots = [];
 let rawDetections = [];
 let pollingInterval = null;
 let devicePollingInterval = null;
+let liveReadingInterval = null;  // polls /api/latest-reading every 1.5s for continuous IMU display
 let currentMode = "HARDWARE"; // Default to real hardware view
 let activeSection = "dashboard";
 let alertsViewMode = "HOTSPOTS"; // "HOTSPOTS" or "RAW"
@@ -53,11 +54,33 @@ document.addEventListener("DOMContentLoaded", () => {
     // Fast polling for device connection heartbeat (every 2s)
     devicePollingInterval = setInterval(fetchDeviceStatus, 2000);
 
+    // Live sensor reading poll (every 1.5s) - shows current ML prediction
+    // and raw IMU values from the ESP32 without requiring Ping Test button
+    liveReadingInterval = setInterval(fetchLatestReading, 1500);
+
     // Refresh network info every 30s (IP can change when hotspot reconnects)
     setInterval(fetchNetworkInfo, 30000);
 
     // Main polling for hotspots and KPI metrics (every 3s)
     pollingInterval = setInterval(refreshDashboard, 3000);
+
+    // Pause polling when tab is hidden, resume when visible again
+    // This avoids stale-connection timeouts and saves resources
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            clearInterval(devicePollingInterval);
+            clearInterval(pollingInterval);
+            clearInterval(liveReadingInterval);
+        } else {
+            // Tab became visible again — immediately refresh then restart intervals
+            fetchDeviceStatus();
+            fetchLatestReading();
+            refreshDashboard();
+            devicePollingInterval = setInterval(fetchDeviceStatus, 2000);
+            liveReadingInterval = setInterval(fetchLatestReading, 1500);
+            pollingInterval = setInterval(refreshDashboard, 3000);
+        }
+    });
 });
 
 /**
@@ -589,6 +612,75 @@ async function fetchDeviceStatus() {
     } catch (e) {
         const devText = document.getElementById("hwDeviceText");
         if (devText) devText.textContent = "Backend Connection Error";
+    }
+}
+
+/**
+ * -------------------------------------------------------------
+ * 5b. Live Sensor Reading Poller
+ * -------------------------------------------------------------
+ * Polls /api/latest-reading every 1.5 seconds to display the
+ * current ML inference result and raw IMU data in the status bar.
+ *
+ * This is what was MISSING before — without this, the telemetry
+ * status bar only updated when Ping Test was clicked because that
+ * was the only code path that both:
+ *   (a) sent samples to fill the buffer, AND
+ *   (b) triggered fetchDeviceStatus immediately after.
+ *
+ * Now that /api/latest-reading returns the prediction on every batch
+ * (thanks to the 20-sample threshold fix in app.py), this function
+ * keeps the UI showing live data continuously.
+ */
+async function fetchLatestReading() {
+    try {
+        const deviceId = latestHardwareDevice ? latestHardwareDevice.device_id : "ESP32_BUS_01";
+        const res = await fetch(`/api/latest-reading?device_id=${encodeURIComponent(deviceId)}`);
+        if (!res.ok) return;
+        const data = await res.json();
+
+        // Elements in the status bar
+        const telText = document.getElementById("hwLastTelemetryText");
+
+        if (data.status === "no_data") {
+            // No telemetry received yet from ESP32
+            if (telText) telText.textContent = "Waiting for ESP32 packets...";
+            return;
+        }
+
+        const pred = data.prediction;
+        if (!pred) return;
+
+        // Update "Last Telemetry" strip with live reading details
+        if (telText && data.received_at) {
+            const receivedAt = new Date(data.received_at);
+            const ageMs = Date.now() - receivedAt.getTime();
+            const ageSec = Math.round(ageMs / 1000);
+            const predClass = pred["class"] || "NORMAL_ROAD";
+            const conf = pred["confidence"] ? Math.round(pred["confidence"] * 100) : 0;
+
+            const classColor = predClass === "POTHOLE" ? "#EF4444"
+                             : predClass === "SPEED_BREAKER" ? "#F59E0B"
+                             : predClass === "ROUGH_ROAD" ? "#38BDF8"
+                             : "#10B981";
+
+            telText.innerHTML = `${ageSec}s ago &nbsp;•&nbsp; `
+                + `<span style="color:${classColor}; font-weight:700;">${predClass}</span>`
+                + ` <span style="color:#94A3B8;">(${conf}% conf · Seq #${pred.seq_num || 0})</span>`;
+        }
+
+        // If this is a new hazard that just appeared in the prediction,
+        // gently flash the status bar for visual feedback
+        if (pred["is_hazard"] && pred["class"] !== "NORMAL_ROAD") {
+            const strip = document.getElementById("hwTelemetryStatus");
+            if (strip) {
+                strip.style.transition = "background 0.2s";
+                strip.style.background = "rgba(239,68,68,0.08)";
+                setTimeout(() => { if (strip) strip.style.background = ""; }, 800);
+            }
+        }
+    } catch (e) {
+        // Non-fatal: backend may be temporarily unavailable, just skip
     }
 }
 

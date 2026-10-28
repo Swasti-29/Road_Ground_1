@@ -58,6 +58,7 @@ CORS(app)
 # In-memory rolling buffer per device (keeps last 200 samples)
 DEVICE_BUFFERS = collections.defaultdict(lambda: collections.deque(maxlen=200))
 LATEST_GPS = {}
+LATEST_PREDICTION = {}  # Stores last ML prediction per device_id for /api/latest-reading
 DEVICE_LAST_SEQ = {}
 DEVICE_LAST_HAZARD_TS = {}
 DEVICE_LAST_NORMAL_TS = {}
@@ -352,9 +353,16 @@ def ingest_telemetry():
     latest_prediction = None
     alert_triggered = False
 
-    # Perform inference when buffer reaches >= 100 samples (1.0 sec window at 100Hz)
-    if len(buffer) >= 100 and predictor is not None and predictor.model is not None:
-        window_samples = list(buffer)[-100:]
+    # Perform inference on every batch as soon as >= 20 samples arrive.
+    # The ESP32 sends exactly 20 samples per HTTP POST (~200ms cadence at 100Hz).
+    # Previously this threshold was 100, meaning 5 batches had to arrive before
+    # any inference ran — causing the dashboard to show nothing until Ping was clicked.
+    # Using the last 60 samples as window (0.6s) gives the model enough signal context
+    # while still running on the very first batch received after reconnect.
+    MIN_SAMPLES_FOR_INFERENCE = 20
+    INFERENCE_WINDOW = min(len(buffer), 60)  # Use up to 60 samples for better accuracy
+    if len(buffer) >= MIN_SAMPLES_FOR_INFERENCE and predictor is not None and predictor.model is not None:
+        window_samples = list(buffer)[-INFERENCE_WINDOW:]
         ax = np.array([s.get("ax", 0.0) for s in window_samples], dtype=np.float64)
         ay = np.array([s.get("ay", 0.0) for s in window_samples], dtype=np.float64)
         az = np.array([s.get("az", 1.0) for s in window_samples], dtype=np.float64)
@@ -373,7 +381,11 @@ def ingest_telemetry():
         pred["ride_id"] = ride_id
         pred["mode"] = mode
         pred["seq_num"] = seq_num
+        pred["buffer_size"] = len(buffer)
+        pred["received_at"] = datetime.now().isoformat()
         latest_prediction = pred
+        # Store latest prediction for /api/latest-reading endpoint
+        LATEST_PREDICTION[device_id] = pred
 
         now_ts = current_time_ms
         last_hazard_time = DEVICE_LAST_HAZARD_TS.get(device_id, 0)
@@ -409,6 +421,48 @@ def ingest_telemetry():
         "latest_prediction": latest_prediction,
         "alert": alert_triggered,
         "mode": mode
+    })
+
+
+@app.route("/api/latest-reading", methods=["GET"])
+def latest_reading():
+    """
+    Returns the most recent ML inference result per device.
+    The dashboard polls this every 1.5s to display live sensor data
+    without requiring a full hotspots/detections fetch.
+    This is the endpoint that enables continuous display of az, confidence,
+    and hazard class without clicking Ping Test.
+    """
+    device_id = request.args.get("device_id", "ESP32_BUS_01")
+
+    if device_id == "ALL":
+        # Return latest reading for all connected devices
+        return jsonify({
+            "readings": {
+                did: pred for did, pred in LATEST_PREDICTION.items()
+            },
+            "count": len(LATEST_PREDICTION)
+        })
+
+    pred = LATEST_PREDICTION.get(device_id)
+    if not pred:
+        # Also check if any device has sent data
+        if LATEST_PREDICTION:
+            # Return most recent from any device
+            pred = list(LATEST_PREDICTION.values())[-1]
+        else:
+            return jsonify({
+                "status": "no_data",
+                "message": "No telemetry received yet. Waiting for ESP32 to connect.",
+                "buffer_sizes": {did: len(buf) for did, buf in DEVICE_BUFFERS.items()}
+            })
+
+    return jsonify({
+        "status": "ok",
+        "device_id": pred.get("device_id", device_id),
+        "prediction": pred,
+        "buffer_size": pred.get("buffer_size", 0),
+        "received_at": pred.get("received_at")
     })
 
 
